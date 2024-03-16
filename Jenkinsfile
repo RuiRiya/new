@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       name = 'riya'
+       name = 'priya'
     }
     parameters{
     string(name: 'your_name', defaultValue: 'asvani', description: "enter your name" )
@@ -14,9 +14,7 @@ pipeline {
             steps {
                 sh '''
                 pwd
-                touch abc
-                ls
-                date
+                whoami
                 '''
 
             }
