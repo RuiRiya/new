@@ -1,0 +1,43 @@
+pipeline{
+    agent any
+    stages{
+        stage("echo"){
+            steps{
+                echo 'lets learn jenkins'
+            }
+            
+        }
+        stage("sh"){
+            steps{
+                sh 'pwd'
+            }
+            
+        }
+        stage("multiple commands"){
+            steps{
+                sh '''touch abc
+                ls
+                whoami
+                date'''
+            }
+            
+        }
+        stage("input"){
+            steps{
+                input message: 'do you want to continue?', ok: 'yes please'
+            }
+            
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
