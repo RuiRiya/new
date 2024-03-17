@@ -1,0 +1,57 @@
+pipeline{
+    agent any
+    environment {
+  name = "riya"
+}
+parameters {
+  booleanParam description: 'is this code latest', name: 'Islatest'
+  choice choices: ['dev', 'test', 'prod'], name: 'env'
+}
+
+    stages{
+        stage("echo"){
+            steps{
+                echo 'lets learn jenkins'
+            }
+            
+        }
+        stage("sh"){
+            environment {
+  username = "ram"
+}
+
+            steps{
+                sh 'pwd'
+                echo '${name}'
+                echo '${username}'
+            }
+            
+        }
+        stage("multiple commands"){
+            steps{
+                sh '''touch abc
+                ls
+                whoami
+                date'''
+            }
+            
+        }
+        stage("input"){
+            steps{
+                input message: 'do you want to continue?', ok: 'yes please'
+            }
+            
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
